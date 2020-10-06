@@ -1,5 +1,5 @@
 FROM alpine:3.11
-ARG VER=1.15.2-31.1.27
+ARG VER=1.16.3-34.1.0
 WORKDIR /minecraft
 RUN apk update && apk add openjdk8
 #This file will have to be updated as forge versions are released

@@ -4,7 +4,7 @@ run with port 25565 exposed and one of these options:
 1) Add your world to a docker volume (located at ${PWD}), and attach it to your world
   docker volume create --driver local -o o=bind -o type=none -o device="${PWD}" mcworld
 
-  docker container run -itp 25565:25565 --rm --name mc -v mcworld:/minecraft/world brazil/minecraft:1.15.2-forge
+  docker container run -itp 25565:25565 --rm --name mc -v mcworld:/minecraft/world brazil/minecraft:1.16.3-forge
 
 2) No-pain fresh start with a new random world:
   docker container run -dp 25565:25565 --rm --name mc brazil/minecraft:$ver
