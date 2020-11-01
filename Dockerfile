@@ -37,7 +37,7 @@ COPY . /minecraft
 
 #env substituting
 ENV spawnprotection=0
-ENV levelseed=brazil
+ENV levelseed=Brazil
 ENV SERVPROPS='$spawnprotection:$levelseed'
 RUN envsubst "$SERVPROPS" < server.properties.starter > server.properties
 
