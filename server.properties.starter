@@ -1,50 +1,252 @@
 #Minecraft server properties
 #Sun Mar 22 03:44:39 GMT 2020
+#Setting Description format->
+#Setting-Name=DefaultValue;ValueType(_)options,options,...options)
+## Detailed Description after double #s
+
+#allow-flight=false;Boolean
 allow-flight=false
+
+#allow-nether=true;Boolean
 allow-nether=true
+
+
+#announce-player-achievements=true;Boolean
+announce-player-achievements=true
+
+#broadcast-XXX-to-ops=true;Boolean
+## broadcast commands in console to all OPs (or from remote console [rcon])
 broadcast-console-to-ops=true
 broadcast-rcon-to-ops=true
+
+#debug=false;Boolean
 debug=false
+
+#difficulty=easy;Integer(0-3)
+## 0=Peaceful, 1=easy, 2=Normal, 3=Hard
 difficulty=easy
+
+
+#enable-command-block=false;Boolean
 enable-command-block=false
+
+#enable-jmx-monitoring=false;Boolean
+## exposes a java MBean for tickTimes, details here:
+## https://docs.oracle.com/javase/8/docs/technotes/guides/management/agent.html
 enable-jmx-monitoring=false
+
+#enable-query=false;Boolean
+## for GameSpy4 protocol server listener for querying server details
+## see query.port below for access port
 enable-query=false
+
+#enable-rcon=false;Boolean
+## enables remote access to the server console via port in the rcon.port setting below
+## password is the rcon.password below
 enable-rcon=false
+
+#enable-status=true;Boolean
+## Makes server appear as "online" in Server List. Setting to false will
+## only make the server APPEAR offline to Clients, but will accept all connections
+enable-status=true
+
+#enforce-whitelist=false;Boolean
+## Enforces the whitelist created on the server by the 
+## white-list setting below
+## See enforce-whitelist for more details
+### Only kicks ONLINE users not on whitelist
 enforce-whitelist=false
+
+#entity-broadcast-range-percentage=100;Integer(0-500)
+## How far entities are before being rendered on Client (may increase lag)
+## Works just like render distance on client, but reduces/increases server load
 entity-broadcast-range-percentage=100
+
+#force-gamemode=false;Boolean
+## forces players to join on default gammemode, regardless of mode on last logoff
 force-gamemode=false
+
+#function-permission-level=2;Integer(1-4)
+## Sets default permissions of commands using text files with the extension .mcfunction
+## https://minecraft.gamepedia.com/Function_(Java_Edition)
+## See OP-permission-level for numeric definition
 function-permission-level=2
+
+#gamemode=survival;String(survival,creative,adventure,spectator)
+## Specifies default gammemode of server
+## 0-3 ALSO work, but is deprecated
 gamemode=survival
+
+#generate-structures=true;Boolean
+## defines whether structures can be generated in NEW chunks
+## Dungeons will still be generated, even when false
 generate-structures=true
+
+#generator-settings=<blank>;String(<see link for format>)
+## https://minecraft.gamepedia.com/Java_Edition_level_format#generatorOptions_tag_format
+## example-> generator-settings=
+### All : must be \ escaped
 generator-settings=
+
+#hardcore=false;Boolean
+## Ignores server difficulty & auto-changes to HARD
+## if you die, your mode set to spectator, no respawn
 hardcore=false
+
+#level-name=world;String(<any name>)
+## Names the world & the folder it is stored in.
+## Changing this value & restarting the server 
+## will cause that NEW folder to load instead
+### single-quotes may need to be \ escaped
 level-name=world
+
+#level-seed=<blank>;String(any, but Integer is preferred)
 level-seed=$levelseed
+
+#level-type=default;String(default,flat,largeBiomes,amplified)
+## largeBiomes-all biomes are larger
+## amplified-Generation height limit is much higher
 level-type=default
+
+#max-build-height=256;Integer(multiple of 8, max of 256)
+## A low build-height MAY still have terrain generate above --
+## only you can't build
 max-build-height=256
+
+#max-players=20;Integer(0-2147483647)
+## ops can join a full server ONLY if the ops.json file has a setting
+## bypassesPlayerLimit=true
 max-players=20
+
+#max-tick-time=60000;Integer(0-[(2^63)-1])
+## max number of milliseconds a single tick can take before server
+## is considered halted & forcibly shutsdown via System.exit(1)
+## -1 disables this feature (called server watchdog) entirely
 max-tick-time=60000
+
+#max-world-size=29999984;Integer(1-29999984)
+## Sets the maximum number blocks (in radius) for a physical world border
 max-world-size=29999984
+
+#motd=A Minecraft Server;String(any name up to 59Char)
+## Format with colors and symbols:
+## https://minecraft.gamepedia.com/Formatting_codes#Use_in_server.properties_and_pack.mcmeta
 motd=A Minecraft Server
+
+#network-compression-threshold=256;Integer(64-1500, though any will work)
+## How big a packet can before being compressed @N-1 (So default is really 255)
+## -1 DISABLES compression
+## 0 compresses all
+### Ethernet Standard pads anythingless than 64 UP to 64, 
+### and has problems with packets exceeding MTU (typically 1500)
 network-compression-threshold=256
+
+#online-mode=true;Boolean
+## Allow only licensed players to join=true
+## Allow unlicensed player=false
 online-mode=true
+
+#op-permission-level=4;Integer(1-4)
+## default permissions for all OP commands
+## 1 - Bypass Spawn protection
+## 2 - 1+Also Enables all command blocks & singleplayer cheats (except publish and debug)
+## 3 - 1&2+Enable multiplayer only cheats (debug) and player mgmt (op,ban,etc)
+## 4 - 1-3+ ALL commands (stop,start,save-all,save-on,save-off)
 op-permission-level=4
+
+#player-idle-timeout=0;Integer
+## kicks players who are idle for this many minutes
+## 0 disables this feature
 player-idle-timeout=0
+
+#prevent-proxy-connections=false;Boolean
+## Kicks players whose ISP/AS sent from the server is different from the one from Mojang's authentication server
 prevent-proxy-connections=false
+
+#pvp=true;Boolean
+## pvp or pvE
 pvp=true
+
+#query.port=25565;Integer(1-65534)
+# Sets port for access on GameSpy4 enable-query setting
 query.port=25565
+
+#rcon.password=<blank>;String(<any>)
+## Password for Remote Console Management
 rcon.password=
+
+#rcon.port=25575;Integer(1-65534)
+## Port number to access Remote console Management
 rcon.port=25575
+
+#resource-pack=<blank>;String(<uri>)
+## Optional URI to a resource pack that a player MAY choose to use
+## Note: the URI MUST end with a 1 when using dropbox as your pack host
+## Example: resource-pack=https://www.dropbox.com/s/<RandomID>/ResoucePack.zip?dl=1
 resource-pack=
+
+#resource-pack-sha1=<blank>;String(<HASH matching resource-pack content above>)
+## USE THIS IF you use a resource pack; it will verify that the pack
+## was downloaded correctly, verified against your generated HASH here
 resource-pack-sha1=
+
+#require-resource-pack=false;Boolean
+## disconnects players who do not accept download of Resource packs
+resource-pack=
+
+#server-ip=<blank>;String(ip.add.re.ss)
+## Binds server to IP -- STRONGLY RECOMMENDED OT LEAVE BLANK
 server-ip=
+
+#server-port=25565;Integer(1-65534)
+## Port where players can connect to game
 server-port=25565
-snooper-enabled=true
+
+#snooper-enabled=true;Boolean
+## sends stats to snoop.minecraft.com; 
+## aggregated content can be viewed at stats.minecraft.com
+snooper-enabled=false
+
+#spawn-animals=true;Boolean
+## Enables/Disables normal animal spawn. 
+##Animals immediately vanish when false
 spawn-animals=true
+
+#spawn-monsters=true;Boolean
+## Enables/diables monster spawning at night & in the dark
+## This setting has no effect if difficulty = 0 (peaceful). 
+## If difficulty is not = 0, a monster can still spawn from a spawner.
 spawn-monsters=true
+
+#spawn-npcs=true;Boolean
+## Enable/Disable Villagers.
 spawn-npcs=true
+
+#spawn-protection=16;Integer(0-?)
+## Prevents non-op players from editing blocks around 2x+1 of Spawn area
+## 0 disables protection, 1=3x3 blocks, 2=5x5, 3=7x7, etc
+### Automatically disabled when there are NO OPs
 spawn-protection=$spawnprotection
+
+#sync-chunk-writes=true;Boolean
+## Enables synchronous chunk writing. If you get a lot of 
+## "Can't keep up" messages when loading new chunks, particularly when 
+## flying an Elytra: set this to false
 sync-chunk-writes=true
+
+#use-native-transport=true;Boolean
+## Enables native Linux packet sending/receiving optimization
+## Leave true unless on Windows or weird Linux Distro
 use-native-transport=true
+
+#view-distance=10;Integer(3-32)
+## Set the amount of world data sent to a client measured in chunk radius
+## This is the server-side viewing distance
 view-distance=10
+
+#white-list=false;Boolean
+## Enforces the whitelist on the server for players whose profiles are
+## stored in whitelist.json
+## See enforce-whitelist for more details
+### OPs are automatically whitelisted
 white-list=false
