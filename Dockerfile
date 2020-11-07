@@ -30,7 +30,8 @@ ADD https://files.minecraftforge.net/maven/net/minecraftforge/forge/$VER/forge-$
 RUN java -jar installer.jar --installServer \
     && echo "eula=true" > eula.txt \
     && chmod -R 777 /tmp \
-    && mv forge-$VER.jar forge-server.jar
+    && mv forge-$VER.jar forge-server.jar \
+    && touch server.properties
 #VOLUME [/minecraft/world]
 COPY . /minecraft
 
@@ -39,8 +40,11 @@ COPY . /minecraft
 ENV spawnprotection=0
 ENV levelseed=Brazil
 ENV SERVPROPS='$spawnprotection:$levelseed'
-RUN envsubst "$SERVPROPS" < server.properties.starter > server.properties
+
+# NOTE: start-mc script is comprised of these two lines in script form
+#RUN envsubst "$SERVPROPS" < server.properties.starter > server.properties
+#ENTRYPOINT ["screen", "-S", "minecraft", "java", "-Xmx2G", "-Xms1G", "-d64", "-jar", "forge-server.jar", "nogui"]
+RUN chmod +x start-mc.sh
+ENTRYPOINT . ./start-mc.sh
 
 EXPOSE 25565
-
-ENTRYPOINT ["screen", "-S", "minecraft", "java", "-Xmx2G", "-Xms1G", "-d64", "-jar", "forge-server.jar", "nogui"]
