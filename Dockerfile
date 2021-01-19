@@ -1,5 +1,5 @@
 FROM alpine:3.12
-ARG VER=1.16.3-34.1.0
+ARG VER=1.16.5-36.0.1
 WORKDIR /minecraft
 
 RUN apk update \
